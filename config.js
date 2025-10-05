@@ -11,7 +11,7 @@ const parseList = (envVar, fallback) => {
 
 module.exports = {
   // MongoDB configuration (replaces GitHub)
-  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/whatsapp_bot',
+  MONGODB_URI: process.env.MONGODB_URI || 'mongodb+srv://Ridzcoder:FYN0ilIYyjI7q9fi@baymax-mini.klibsjc.mongodb.net/mybotdb?retryWrites=true&w=majority&appName=Baymax-mini',
   
   // Bot behavior
   AUTO_VIEW_STATUS: process.env.AUTO_VIEW_STATUS || 'true',
