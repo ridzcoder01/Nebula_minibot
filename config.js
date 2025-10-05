@@ -39,6 +39,6 @@ module.exports = {
   OWNER_NUMBER: process.env.OWNER_NUMBER || '263714732501',
 
   // Misc
-  GROUP_INVITE_LINK: process.env.GROUP_INVITE_LINK || 'https://chat.whatsapp.com/KZWKEMpvPFOHrxjOjDHJaH?mode=ems_copy_t',
+  GROUP_INVITE_LINK: process.env.GROUP_INVITE_LINK || 'https://chat.whatsapp.com/KZWKEMpvPFOHrxjOjDHJaH',
   PM2_NAME: process.env.PM2_NAME || 'Nebula-minibot'
 };
