@@ -575,40 +575,52 @@ function setupCommandHandlers(socket, number) {
                 }
 
                 let menuText = `
-*╭───❮  𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧🌐💭 ❯───╮*
+*╭────❒ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭 ❒*
+├◈ _Your All-In-One WhatsApp Assistant_
+*┕──────────────────────❒*
 
-*💠 General*
-• ${config.PREFIX}alive
-• ${config.PREFIX}ai
-• ${config.PREFIX}fancy
-• ${config.PREFIX}logo
-• ${config.PREFIX}pair
-• ${config.PREFIX}vv
-• ${config.PREFIX}dllogo
-• ${config.PREFIX}active
-• ${config.PREFIX}getabout
+*╭────❒ 💠 GENERAL ❒*
+├◈ ${config.PREFIX}alive  
+├◈ ${config.PREFIX}ai  
+├◈ ${config.PREFIX}fancy  
+├◈ ${config.PREFIX}logo  
+├◈ ${config.PREFIX}pair  
+├◈ ${config.PREFIX}vv  
+├◈ ${config.PREFIX}dllogo  
+├◈ ${config.PREFIX}active  
+├◈ ${config.PREFIX}getabout  
+*┕──────────────────────❒*
 
-*🎵 Media Tools*
-• ${config.PREFIX}play
-• ${config.PREFIX}aiimg
-• ${config.PREFIX}tiktok
-• ${config.PREFIX}fb
-• ${config.PREFIX}ig
-• ${config.PREFIX}ts
+*╭────❒ 🎵 MEDIA TOOLS ❒*
+├◈ ${config.PREFIX}play  
+├◈ ${config.PREFIX}aiimg  
+├◈ ${config.PREFIX}tiktok  
+├◈ ${config.PREFIX}fb  
+├◈ ${config.PREFIX}ig  
+├◈ ${config.PREFIX}ts  
+*┕──────────────────────❒*
 
-*📰 News & Info*
-• ${config.PREFIX}news
-• ${config.PREFIX}nasa
-• ${config.PREFIX}gossip
-• ${config.PREFIX}cricket
+*╭────❒ 📰 NEWS & INFO ❒*
+├◈ ${config.PREFIX}news  
+├◈ ${config.PREFIX}nasa  
+├◈ ${config.PREFIX}gossip  
+├◈ ${config.PREFIX}cricket  
+*┕──────────────────────❒*
 
-*🛠 Tools*
-• ${config.PREFIX}winfo
-• ${config.PREFIX}bomb
-• ${config.PREFIX}deleteme
-• ${config.PREFIX}fc
+*╭────❒ 🛠 TOOLS ❒*
+├◈ ${config.PREFIX}winfo  
+├◈ ${config.PREFIX}bomb  
+├◈ ${config.PREFIX}deleteme  
+├◈ ${config.PREFIX}fc  
+*┕──────────────────────❒*
 
-*╰──────────❮ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 ❯──────────╯*
+*╭────❒ ⚙️ INFO ❒*
+├◈ Version: 1.5.0  
+├◈ Creator: Ridz Coder  
+├◈ Team: Terridevs  
+*┕──────────────────────❒*
+
+🚀 *Powered by Rɪᴅᴢ Cᴏᴅᴇʀ | Tᴇʀʀɪᴅᴇᴠs*
 `;
 
                 await socket.sendMessage(from, {
@@ -1316,76 +1328,83 @@ function setupCommandHandlers(socket, number) {
               }
 
               case 'play': {
-                const yts = require('yt-search');
-                const ddownr = require('denethdev-ytmp3');
+    const yts = require('yt-search');
+    const axios = require('axios');
 
-                function extractYouTubeId(url) {
-                    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-                    const match = url.match(regex);
-                    return match ? match[1] : null;
-                }
+    function extractYouTubeId(url) {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/|v\/|shorts\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
+    }
 
-                function convertYouTubeLink(input) {
-                    const videoId = extractYouTubeId(input);
-                    if (videoId) {
-                        return `https://www.youtube.com/watch?v=${videoId}`;
-                    }
-                    return input;
-                }
+    function convertYouTubeLink(input) {
+        const videoId = extractYouTubeId(input);
+        if (videoId) {
+            return `https://www.youtube.com/watch?v=${videoId}`;
+        }
+        return input;
+    }
 
-                const q = msg.message?.conversation || 
-                          msg.message?.extendedTextMessage?.text || 
-                          msg.message?.imageMessage?.caption || 
-                          msg.message?.videoMessage?.caption || '';
+    const q = msg.message?.conversation || 
+              msg.message?.extendedTextMessage?.text || 
+              msg.message?.imageMessage?.caption || 
+              msg.message?.videoMessage?.caption || '';
 
-                if (!q || q.trim() === '') {
-                    return await socket.sendMessage(sender, { text: '*`Need YT_URL or Title`*' });
-                }
+    if (!q || q.trim() === '') {
+        return await socket.sendMessage(sender, { text: '*`Need YouTube URL or Title`*' });
+    }
 
-                const fixedQuery = convertYouTubeLink(q.trim());
+    const fixedQuery = convertYouTubeLink(q.trim());
 
-                try {
-                    const search = await yts(fixedQuery);
-                    const data = search.videos[0];
-                    if (!data) {
-                        return await socket.sendMessage(sender, { text: '*`No results found`*' });
-                    }
+    try {
+        const search = await yts(fixedQuery);
+        const data = search.videos[0];
+        if (!data) {
+            return await socket.sendMessage(sender, { text: '*`No results found`*' });
+        }
 
-                    const url = data.url;
-                    const desc = `
-🎵 *𝚃𝚒𝚝𝚕𝚎 :* \`${data.title}\`
-
-◆⏱️ *𝙳𝚞𝚛𝚊𝚝𝚒𝚘𝚗* : ${data.timestamp} 
-
-◆ *𝚅𝚒𝚎𝚠𝚜* : ${data.views}
-
-◆ 📅 *𝚁𝚎𝚕𝚎𝚊𝚜 𝙳𝚊𝚝𝚎* : ${data.ago}
+        const desc = `
+🎵 *Title:* \`${data.title}\`
+⏱️ *Duration:* ${data.timestamp}
+👁️ *Views:* ${data.views}
+📅 *Published:* ${data.ago}
 `;
 
-                    await socket.sendMessage(sender, {
-                        image: { url: data.thumbnail },
-                        caption: desc,
-                    }, { quoted: msg });
+        // Send video info and thumbnail
+        await socket.sendMessage(sender, {
+            image: { url: data.thumbnail },
+            caption: desc,
+        }, { quoted: msg });
 
-                    await socket.sendMessage(sender, { react: { text: '⬇️', key: msg.key } });
+        // React to show progress
+        await socket.sendMessage(sender, { react: { text: '⬇️', key: msg.key } });
 
-                    const result = await ddownr.download(url, 'mp3');
-                    const downloadLink = result.downloadUrl;
+        // Fetch mp3 using PrivateZia API
+        const apiUrl = `https://api.privatezia.biz.id/api/downloader/ytplaymp3?query=${encodeURIComponent(data.title)}`;
+        const response = await axios.get(apiUrl);
 
-                    await socket.sendMessage(sender, { react: { text: '⬆️', key: msg.key } });
+        if (!response.data || !response.data.status) {
+            return await socket.sendMessage(sender, { text: '*`Failed to fetch download link`*' });
+        }
 
-                    await socket.sendMessage(sender, {
-                        audio: { url: downloadLink },
-                        mimetype: "audio/mpeg",
-                        ptt: true
-                    }, { quoted: msg });
-                } catch (err) {
-                    console.error(err);
-                    await socket.sendMessage(sender, { text: "*`Error occurred while downloading`*" });
-                }
-                break;
-              }
+        const downloadLink = response.data.result.download_url || response.data.result.url;
 
+        await socket.sendMessage(sender, { react: { text: '⬆️', key: msg.key } });
+
+        // Send audio as voice note (ptt)
+        await socket.sendMessage(sender, {
+            audio: { url: downloadLink },
+            mimetype: "audio/mpeg",
+            ptt: true
+        }, { quoted: msg });
+
+    } catch (err) {
+        console.error(err);
+        await socket.sendMessage(sender, { text: "*`Error occurred while downloading`*" });
+    }
+
+    break;
+}
               case 'winfo': {
                 if (!args[0]) {
                     await socket.sendMessage(sender, {
