@@ -561,19 +561,6 @@ function setupCommandHandlers(socket, number) {
               }
 
               case 'menu': {
-                let loadingSteps = [
-                    '🔄 *LOADING... 20%*',
-                    '🔄 *LOADING... 30%*',
-                    '🔄 *LOADING... 40%*',
-                    '🔄 *LOADING... 50%*',
-                    '✅ *COMPLETE!*'
-                ];
-
-                for (let step of loadingSteps) {
-                    await socket.sendMessage(from, { text: step });
-                    await new Promise(r => setTimeout(r, 500));
-                }
-
                 let menuText = `
 *╭────❒ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭 ❒*
 ├◈ _Your All-In-One WhatsApp Assistant_
