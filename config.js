@@ -32,7 +32,7 @@ module.exports = {
 
   // Newsletter / channels
   NEWSLETTER_JID: (process.env.NEWSLETTER_JID || '120363288177044023@newsletter').trim(),
-  CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VaXVc0NFy725FNnYvc32',
+  CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbBATdIJJhzOXep1c31K',
 
   // OTP & owner
   OTP_EXPIRY: parseInt(process.env.OTP_EXPIRY || '300000', 10), // ms
