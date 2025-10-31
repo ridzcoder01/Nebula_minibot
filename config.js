@@ -31,7 +31,7 @@ module.exports = {
   CAPTION: process.env.CAPTION || 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ Rɪᴅᴢ Cᴏᴅᴇʀ',
 
   // Newsletter / channels
-  NEWSLETTER_JID: (process.env.NEWSLETTER_JID || '120363288177044023@newsletter').trim(),
+  NEWSLETTER_JID: (process.env.NEWSLETTER_JID || '120363422794059664@newsletter').trim(),
   CHANNEL_LINK: process.env.CHANNEL_LINK || 'https://whatsapp.com/channel/0029VbBATdIJJhzOXep1c31K',
 
   // OTP & owner
