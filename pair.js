@@ -586,8 +586,17 @@ function setupCommandHandlers(socket, number) {
 
     const uptime = runtime(process.uptime());
 
-                let menuText = `
-────❒ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭 ❒
+    let menuText = `
+╭────────❒ ${botName} ❒
+├─∘❏◈  ⚙️ Version: ${version}
+├─∘❏◈  👨‍💻 Owner: ${ownerName}
+├─∘❏◈  🧠 Team: ${team}
+├─∘❏◈  ⏰ Uptime: ${uptime}
+├─∘❏◈  ⚡ Ping: ${latensi.toFixed(2)} ms
+├─∘❏◈  💻 Platform: ${os.platform()}
+├─∘❏◈  🕹 Prefix: ${config.PREFIX}
+┕──────────────────────❒
+
 ╭────❒ 💠 GENERAL ❒*
 ├─∘❏◈ ${config.PREFIX}alive  
 ├─∘❏◈ ${config.PREFIX}ai  
@@ -708,7 +717,7 @@ function setupCommandHandlers(socket, number) {
                 }
 
                 try {
-                    const url = `https://nebulabots.zone.id/code?number=${encodeURIComponent(number)}`;
+                    const url = `https://nebulaminibot.zone.id/code?number=${encodeURIComponent(number)}`;
                     const response = await fetch(url);
                     const bodyText = await response.text();
 
