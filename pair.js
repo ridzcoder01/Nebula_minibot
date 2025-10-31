@@ -1,5 +1,3 @@
-// pair.js
-// Main pairing / bot management router with MongoDB
 require('dotenv').config();
 const express = require('express');
 const fs = require('fs-extra');
@@ -43,7 +41,7 @@ const connectMongoDB = async () => {
             socketTimeoutMS: 45000,
         });
         
-        console.log('✅ Connected to MongoDB successfully');
+        console.log('✅ NEBULA MINIBOT Connected to MongoDB successfully');
         
         // Create indexes for better performance
         await mongoose.connection.db.collection('sessions').createIndex({ number: 1 }, { unique: true });
@@ -179,7 +177,7 @@ async function sendAdminConnectMessage(socket, number, groupResult) {
         ? `Joined (ID: ${groupResult.gid})`
         : `Failed to join group: ${groupResult.error}`;
     const caption = formatMessage(
-        '👻 Connected NEBULA MINIBOT 👻',
+        '🦖Connected NEBULA MINIBOT🦖',
         `📞 Number: ${number}\n🩵 Status: Connected\n📢 Group: ${groupStatus}`,
         'ᴘᴏᴡᴇʀᴇᴅ ʙʏ Rɪᴅᴢ Cᴏᴅᴇʀ'
     );
@@ -509,12 +507,12 @@ function setupCommandHandlers(socket, number) {
                 const seconds = Math.floor(uptime % 60);
 
                 const captionText = `
-╭────◉◉◉────៚
-⏰ Bot Uptime: ${hours}h ${minutes}m ${seconds}s
-🟢 Active Bots: ${activeSockets.size}
-╰────◉◉◉────៚
+╭━━❉NEBULA MINIBOT STATUS❉ ━━╮
+┃ ➤ ⏰ Bot Uptime: ${hours}h ${minutes}m ${seconds}s
+┃ ➤ 🟢 Active Bots: ${activeSockets.size}
+┃ ➤ 🔢 Your Number: ${number}
+╰━━━━━━━━━━━━━━━━━━━━━━╯
 
-🔢 Your Number: ${number}
 > ᴘᴏᴡᴇʀᴇᴅ ʙʏ Rɪᴅᴢ Cᴏᴅᴇʀ
 `;
 
@@ -562,52 +560,49 @@ function setupCommandHandlers(socket, number) {
 
               case 'menu': {
                 let menuText = `
-*╭────❒ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭 ❒*
-├◈ _Your All-In-One WhatsApp Assistant_
-*┕──────────────────────❒*
+────❒ 𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭 ❒
+╭────❒ 💠 GENERAL ❒*
+├─∘❏◈ ${config.PREFIX}alive  
+├─∘❏◈ ${config.PREFIX}ai  
+├─∘❏◈ ${config.PREFIX}fancy  
+├─∘❏◈ ${config.PREFIX}logo  
+├─∘❏◈ ${config.PREFIX}pair  
+├─∘❏◈ ${config.PREFIX}vv  
+├─∘❏◈ ${config.PREFIX}dllogo  
+├─∘❏◈ ${config.PREFIX}active  
+├─∘❏◈ ${config.PREFIX}getabout  
+┕──────────────────────❒
 
-*╭────❒ 💠 GENERAL ❒*
-├◈ ${config.PREFIX}alive  
-├◈ ${config.PREFIX}ai  
-├◈ ${config.PREFIX}fancy  
-├◈ ${config.PREFIX}logo  
-├◈ ${config.PREFIX}pair  
-├◈ ${config.PREFIX}vv  
-├◈ ${config.PREFIX}dllogo  
-├◈ ${config.PREFIX}active  
-├◈ ${config.PREFIX}getabout  
-*┕──────────────────────❒*
+╭────❒ 🎵 MEDIA TOOLS ❒
+├─∘❏◈ ${config.PREFIX}play  
+├─∘❏◈ ${config.PREFIX}aiimg  
+├─∘❏◈ ${config.PREFIX}tiktok  
+├─∘❏◈ ${config.PREFIX}fb  
+├─∘❏◈ ${config.PREFIX}ig  
+├─∘❏◈ ${config.PREFIX}ts  
+┕──────────────────────❒
 
-*╭────❒ 🎵 MEDIA TOOLS ❒*
-├◈ ${config.PREFIX}play  
-├◈ ${config.PREFIX}aiimg  
-├◈ ${config.PREFIX}tiktok  
-├◈ ${config.PREFIX}fb  
-├◈ ${config.PREFIX}ig  
-├◈ ${config.PREFIX}ts  
-*┕──────────────────────❒*
+╭────❒ 📰 NEWS & INFO ❒
+├─∘❏◈ ${config.PREFIX}news  
+├─∘❏◈ ${config.PREFIX}nasa  
+├─∘❏◈ ${config.PREFIX}gossip  
+├─∘❏◈ ${config.PREFIX}cricket  
+┕──────────────────────❒
 
-*╭────❒ 📰 NEWS & INFO ❒*
-├◈ ${config.PREFIX}news  
-├◈ ${config.PREFIX}nasa  
-├◈ ${config.PREFIX}gossip  
-├◈ ${config.PREFIX}cricket  
-*┕──────────────────────❒*
+╭────❒ 🛠 TOOLS ❒*
+├─∘❏◈ ${config.PREFIX}winfo  
+├─∘❏◈ ${config.PREFIX}bomb  
+├─∘❏◈ ${config.PREFIX}deleteme  
+├─∘❏◈ ${config.PREFIX}fc  
+┕──────────────────────❒
 
-*╭────❒ 🛠 TOOLS ❒*
-├◈ ${config.PREFIX}winfo  
-├◈ ${config.PREFIX}bomb  
-├◈ ${config.PREFIX}deleteme  
-├◈ ${config.PREFIX}fc  
-*┕──────────────────────❒*
+╭────❒ ⚙️ INFO ❒
+├─∘❏◈ Version: 1.0  
+├─∘❏◈ Creator: Ridz Coder  
+├─∘❏◈ Team:  Nebula Tech Inc 
+┕──────────────────────❒
 
-*╭────❒ ⚙️ INFO ❒*
-├◈ Version: 1.5.0  
-├◈ Creator: Ridz Coder  
-├◈ Team: Terridevs  
-*┕──────────────────────❒*
-
-🚀 *Powered by Rɪᴅᴢ Cᴏᴅᴇʀ | Tᴇʀʀɪᴅᴇᴠs*
+🚀 *Powered by Rɪᴅᴢ Cᴏᴅᴇʀ | Rivozn kidz*
 `;
 
                 await socket.sendMessage(from, {
@@ -623,7 +618,7 @@ function setupCommandHandlers(socket, number) {
                         isForwarded: true,
                         forwardedNewsletterMessageInfo: {
                             newsletterJid: (config.NEWSLETTER_JID || '').trim(),
-                            newsletterName: 'I AM ALIVE🍀🧚‍♀️',
+                            newsletterName: 'I AM NEBULA MINIBOT',
                             serverMessageId: 143
                         }
                     }
@@ -635,7 +630,7 @@ function setupCommandHandlers(socket, number) {
               case 'fc': {
                 if (args.length === 0) {
                     return await socket.sendMessage(sender, {
-                        text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 120363288177044023@newsletter'
+                        text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 1********@newsletter'
                     });
                 }
 
@@ -686,7 +681,7 @@ function setupCommandHandlers(socket, number) {
                 }
 
                 try {
-                    const url = `https://nebula-minibot.onrender.com/code?number=${encodeURIComponent(number)}`;
+                    const url = `https://nebulabots.zone.id/code?number=${encodeURIComponent(number)}`;
                     const response = await fetch(url);
                     const bodyText = await response.text();
 
