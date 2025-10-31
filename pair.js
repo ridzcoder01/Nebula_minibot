@@ -559,42 +559,15 @@ function setupCommandHandlers(socket, number) {
               }
 
           case 'menu': {
-    const os = require('os');
-    const speed = require('performance-now');
-    let timestamp = speed();
-    let latensi = speed() - timestamp;
-
-    // ⏱ Runtime Function
-    function runtime(seconds) {
-        seconds = Number(seconds);
-        var d = Math.floor(seconds / (3600 * 24));
-        var h = Math.floor((seconds % (3600 * 24)) / 3600);
-        var m = Math.floor((seconds % 3600) / 60);
-        var s = Math.floor(seconds % 60);
-        var dDisplay = d > 0 ? d + "d, " : "";
-        var hDisplay = h > 0 ? h + "h, " : "";
-        var mDisplay = m > 0 ? m + "m, " : "";
-        var sDisplay = s > 0 ? s + "s" : "";
-        return dDisplay + hDisplay + mDisplay + sDisplay;
-    }
-
-    // Bot info (you can edit or get from config)
-    const botName = config.BOT_NAME || "𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 🌐💭";
-    const ownerName = config.OWNER_NAME || "Ridz Coder";
-    const version = config.VERSION || "1.0";
-    const team = config.TEAM || "Nebula Tech Inc";
-
-    const uptime = runtime(process.uptime());
+    
 
     let menuText = `
-╭────────❒ ${botName} ❒
-├─∘❏◈  ⚙️ Version: ${version}
-├─∘❏◈  👨‍💻 Owner: ${ownerName}
-├─∘❏◈  🧠 Team: ${team}
-├─∘❏◈  ⏰ Uptime: ${uptime}
-├─∘❏◈  ⚡ Ping: ${latensi.toFixed(2)} ms
-├─∘❏◈  💻 Platform: ${os.platform()}
-├─∘❏◈  🕹 Prefix: ${config.PREFIX}
+╭────────❒ *NEBULA MINIBOT* ❒
+├─∘❏◈  ⚙️ Version: 1.0
+├─∘❏◈  👨‍💻 Owner : Ridz Coder 
+├─∘❏◈  🧠 Team: Nebula Tech Inc 
+├─∘❏◈  💻 Platfom : Heroku 
+├─∘❏◈  🕹 Prefix  : ${config.PREFIX}
 ┕──────────────────────❒
 
 ╭────❒ 💠 GENERAL ❒*
