@@ -605,21 +605,17 @@ function setupCommandHandlers(socket, number) {
 ├─∘❏◈ ${config.PREFIX}fc  
 ┕──────────────────────❒
 
-╭────❒ ⚙️ INFO ❒
-├─∘❏◈ Version: 1.0  
-├─∘❏◈ Creator: Ridz Coder  
-├─∘❏◈ Team:  Nebula Tech Inc 
-┕──────────────────────❒
-
 🚀 *Powered by Rɪᴅᴢ Cᴏᴅᴇʀ | Rivozn kidz*
 `;
 
                 await socket.sendMessage(from, {
                     image: { url: config.RCD_IMAGE_PATH },
+               await socket.sendMessage(from, {
+                    image: { url: config.RCD_IMAGE_PATH },
                     caption: formatMessage(
-                        '𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧',
-                        menuText,
-                        '𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧'
+                        '𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 BY RIDZ CODER',
+   menuText,
+                        '𝗡𝗘𝗕𝗨𝗟𝗔 𝗠𝗜𝗡𝗜𝗕𝗢𝗧 BY RIDZ 
                     ),
                     contextInfo: {
                         mentionedJid: [msg.key.participant || sender],
