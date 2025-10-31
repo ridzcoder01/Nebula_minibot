@@ -27,7 +27,7 @@ module.exports = {
   NUMBER_LIST_PATH: process.env.NUMBER_LIST_PATH || './numbers.json',
 
   // Images / UI
-  RCD_IMAGE_PATH: process.env.RCD_IMAGE_PATH || 'https://files.catbox.moe/7m6u7z.jpg',
+  RCD_IMAGE_PATH: process.env.RCD_IMAGE_PATH || 'https://files.catbox.moe/tgtldb.png',
   CAPTION: process.env.CAPTION || 'ᴘᴏᴡᴇʀᴇᴅ ʙʏ Rɪᴅᴢ Cᴏᴅᴇʀ',
 
   // Newsletter / channels
